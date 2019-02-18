@@ -1,10 +1,10 @@
-public class aritmeticaEntera {
-    public parNumeros obj;
+public class AritmeticaEntera {
+    public ParNumeros obj;
     int x0, y0;
     int a, b, c, d;
     String solX, solY;
 
-    public aritmeticaEntera(parNumeros obj, int c) {
+    public AritmeticaEntera(ParNumeros obj, int c) {
         this.obj = obj;
         this.a = obj.getDividendo();
         this.b = obj.getDivisor();
@@ -12,11 +12,15 @@ public class aritmeticaEntera {
 
     }
 
+    public AritmeticaEntera(ParNumeros obj){
+        this.obj = obj;
+        this.c = 0;
+    }
 
     public boolean divisible(int a, int b) {
         //Se dice que a divide a b si y solo si existe k perteneciente a Z tal que b = k*a
 
-        int k = 2;
+        int k = 1;
         while (b != a * k) {
             k++;
             if (a * k > b) {
@@ -39,8 +43,10 @@ public class aritmeticaEntera {
                 return;
             }
         }
-        obj.setResto(0);
-        obj.setCociente(1);
+        System.out.println(obj.getDividendo());
+
+        obj.setResto(obj.getDividendo());
+        obj.setCociente(0);
     }
 
 
@@ -53,15 +59,15 @@ public class aritmeticaEntera {
             obj.setDivisor(obj.getResto());
             this.divisionEuclidea();
         }
-        obj.setMcd(obj.getDividendo());
+        obj.setMcd(obj.getDivisor());
     }
 
 
     public void algoritmoEuclidesExtendido(){
-
         int xi = 1, xii = 0, x_1;
         int yi = 0, yii = 1, y_1;
 
+        obj.setMcd(obj.getDivisor());
         this.divisionEuclidea();
         while(obj.getResto() != 0){
             x_1 = xii;
@@ -79,7 +85,7 @@ public class aritmeticaEntera {
         this.x0 = xii;
         this.y0 = yii;
         obj.setMcd(obj.getDivisor());
-        System.out.printf("x: %d, y: %d \n", xii, yii);
+        System.out.printf("x: %d, y: %d , mcd: %d\n", xii, yii, obj.getMcd());
     }
 
     public void solGeneral(){

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class main {
+public class Main {
 
     public static void main(String args[]) {
 
@@ -13,13 +13,20 @@ public class main {
         int b = reader.nextInt();
         System.out.print("\n");
 
+
         System.out.print("Intrduze c: ");
         int c = reader.nextInt();
         System.out.print("\n");
 
-        aritmeticaEntera medium = new aritmeticaEntera(new parNumeros(a, b), c);
+        AritmeticaEntera medium = new AritmeticaEntera(new ParNumeros(a, b));
+        medium.algoritmoEuclidesExtendido();
+        //System.out.print(medium.obj.getMcd());
 
-        medium.solGeneral();
+        /*
+        Modulo m = new Modulo(a);
+        System.out.println(m.inversos);
+        System.out.println(m.clase(b));
+        */
     }
 
 }

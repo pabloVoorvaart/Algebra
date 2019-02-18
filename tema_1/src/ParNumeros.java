@@ -1,4 +1,4 @@
-public class parNumeros {
+public class ParNumeros {
     private int dividendo;
     private int divisor;
     private int cociente;
@@ -6,7 +6,7 @@ public class parNumeros {
     private int mcd;
 
 
-    public parNumeros(int dividendo, int divisor) {
+    public ParNumeros(int dividendo, int divisor) {
         this.dividendo = dividendo;
         this.divisor = divisor;
         this.resto = dividendo;
@@ -33,23 +33,22 @@ public class parNumeros {
     }
 
     public void setDividendo(int dividendo) {
-        System.out.printf("setting dividendo: %d \n", dividendo);
+        //System.out.printf("setting dividendo: %d \n", dividendo);
         this.dividendo = dividendo;
     }
 
     public void setDivisor(int divisor) {
-        System.out.printf("setting divisor: %d \n", divisor);
+        //System.out.printf("setting divisor: %d \n", divisor);
         this.divisor = divisor;
     }
 
     public void setCociente(int cociente) {
-        System.out.printf("setting cociente: %d \n", cociente);
-
+        //System.out.printf("setting cociente: %d \n", cociente);
         this.cociente = cociente;
     }
 
     public void setResto(int resto) {
-        System.out.printf("setting resto: %d \n", resto);
+        //System.out.printf("setting resto: %d \n", resto);
         this.resto = resto;
     }
 
