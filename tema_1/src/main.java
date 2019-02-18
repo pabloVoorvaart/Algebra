@@ -13,11 +13,13 @@ public class main {
         int b = reader.nextInt();
         System.out.print("\n");
 
-        aritmeticaEntera obj1 = new aritmeticaEntera(a, b);
+        System.out.print("Intrduze c: ");
+        int c = reader.nextInt();
+        System.out.print("\n");
 
-        //System.out.println(obj1.divisionEuclidea(a, b));
-        System.out.println(obj1.getMcd());
+        aritmeticaEntera medium = new aritmeticaEntera(new parNumeros(a, b), c);
 
+        medium.solGeneral();
     }
 
 }

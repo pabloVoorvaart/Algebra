@@ -1,20 +1,21 @@
 public class aritmeticaEntera {
-    private int D, d;
-    private int mcd;
+    public parNumeros obj;
+    int x0, y0;
+    int a, b, c, d;
+    String solX, solY;
 
-    public aritmeticaEntera(int a, int b){
-        this.D = a;
-        this.d = b;
-        mcd = algoritmoEuclides();
+    public aritmeticaEntera(parNumeros obj, int c) {
+        this.obj = obj;
+        this.a = obj.getDividendo();
+        this.b = obj.getDivisor();
+        this.c = c;
+
     }
 
-
-    public int getMcd(){
-        return mcd;
-    }
 
     public boolean divisible(int a, int b) {
         //Se dice que a divide a b si y solo si existe k perteneciente a Z tal que b = k*a
+
         int k = 2;
         while (b != a * k) {
             k++;
@@ -22,51 +23,78 @@ public class aritmeticaEntera {
                 return false;
             }
         }
+        this.d = k;
         return true;
     }
 
-    public int divisionEuclidea(int a, int b) {
+
+    public void divisionEuclidea() {
         // Para todo D, d ∈ Z con d != 0 existen dos únicos q, r pertenecientes Z tales que D = q · d + r con 0 < r < |d|
         // D es dividendo, d es divisor, r es resto, q es cociente.
 
-        int Dividendo = a;
-        int divisor = b;
-        int resto;
-
-        for (int q = 1; q < Dividendo; q++) {
-            resto = Dividendo - q * divisor;
-            if (Dividendo == q * divisor + resto && resto < divisor) {
-                System.out.printf("for D: %d => d: %d, q: %d, r: %d\n", Dividendo, divisor, q, resto);
-                return resto;
+        for (int q = 1; q < obj.getDividendo(); q++) {
+            obj.setResto(obj.getDividendo() - q * obj.getDivisor());
+            if (obj.getDividendo() == q * obj.getDivisor() + obj.getResto() && obj.getResto() > 0 && obj.getResto() < obj.getDivisor() || obj.getResto()==0) {
+                obj.setCociente(q);
+                return;
             }
         }
-        return 4342412;
+        obj.setResto(0);
+        obj.setCociente(1);
     }
 
 
-    public int algoritmoEuclides() {
+    public void algoritmoEuclides() {
         //Si D, d ∈ Z con d  != 0 y q, r ∈ Z son tales que D = q · d + r  y  0 ≤ r < |d| entonces mcd(D, d) = mcd(d, r).
 
-        int Dividendo = this.D;
-        int divisor = this.d;
-        int resto;
-        while (Dividendo != 0) {
-            resto = divisionEuclidea(Dividendo, divisor);
-            if(resto==0){
-                Dividendo = divisor;
-                break;
-            }
-            else{
-                Dividendo = divisor;
-                divisor = resto;
-            }
+        this.divisionEuclidea();
+        while (obj.getResto() != 0) {
+            obj.setDividendo(obj.getDivisor());
+            obj.setDivisor(obj.getResto());
+            this.divisionEuclidea();
         }
-
-        return Dividendo;
-
+        obj.setMcd(obj.getDividendo());
     }
 
-    public boolean algoritmoEuclidesExtendido(){
-        return false;
+
+    public void algoritmoEuclidesExtendido(){
+
+        int xi = 1, xii = 0, x_1;
+        int yi = 0, yii = 1, y_1;
+
+        this.divisionEuclidea();
+        while(obj.getResto() != 0){
+            x_1 = xii;
+            xii = xi - obj.getCociente() * xii;
+            xi = x_1;
+
+            y_1 = yii;
+            yii = yi - obj.getCociente() * yii;
+            yi = y_1;
+
+            obj.setDividendo(obj.getDivisor());
+            obj.setDivisor(obj.getResto());
+            this.divisionEuclidea();
+        }
+        this.x0 = xii;
+        this.y0 = yii;
+        obj.setMcd(obj.getDivisor());
+        System.out.printf("x: %d, y: %d \n", xii, yii);
+    }
+
+    public void solGeneral(){
+        //set mcd(a,b) and x0, y0
+        this.algoritmoEuclidesExtendido();
+        //check if mcd(a, b) | c
+        if(this.divisible(obj.getMcd(), c)) {
+            solX = String.format("x = %d + %d*t", x0, b / d);
+            solY = String.format("y = %d - %d*t", y0, a / d);
+            System.out.println(solX);
+            System.out.println(solY);
+        }
+        else{
+            System.out.printf("No hay sol, ya que %d no divide a %d\n", obj.getMcd(), c);
+        }
     }
 }
+
