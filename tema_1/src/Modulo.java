@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Modulo {
     public int modulo;
@@ -24,6 +25,21 @@ public class Modulo {
         }
     }
 
+    public void claseInversa(){
+        for ( Integer i : inversos){
+            AritmeticaEntera obj = new AritmeticaEntera(new ParNumeros(i, this.modulo), 1);
+            System.out.printf("Para: %d\n", i);
+            obj.solGeneral();
+        }
+    }
+
+    public void ecuacionModular(int a, int c){
+            int claseA = clase(a);
+            int claseC = clase(c);
+            AritmeticaEntera obj = new AritmeticaEntera(new ParNumeros(claseA, this.modulo), claseC);
+            obj.solGeneral();
+
+    }
 
     public int clase(int n){
 

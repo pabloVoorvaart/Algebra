@@ -36,17 +36,21 @@ public class AritmeticaEntera {
         // Para todo D, d ∈ Z con d != 0 existen dos únicos q, r pertenecientes Z tales que D = q · d + r con 0 < r < |d|
         // D es dividendo, d es divisor, r es resto, q es cociente.
 
-        for (int q = 1; q < obj.getDividendo(); q++) {
+        for (int q = 0; q <= obj.getDividendo(); q++) {
             obj.setResto(obj.getDividendo() - q * obj.getDivisor());
+            //System.out.printf("resto: %d\n", obj.getResto());
             if (obj.getDividendo() == q * obj.getDivisor() + obj.getResto() && obj.getResto() > 0 && obj.getResto() < obj.getDivisor() || obj.getResto()==0) {
                 obj.setCociente(q);
+                //System.out.printf("IN FOR __> D: %d, d: %d, q: %d, r: %d\n", obj.getDividendo(), obj.getDivisor(), obj.getCociente(), obj.getResto());
                 return;
             }
         }
-        System.out.println(obj.getDividendo());
 
+        /*
         obj.setResto(obj.getDividendo());
         obj.setCociente(0);
+        System.out.printf("D: %d, d: %d, q: %d, r: %d\n", obj.getDividendo(), obj.getDivisor(), obj.getCociente(), obj.getResto());
+        */
     }
 
 
@@ -60,6 +64,7 @@ public class AritmeticaEntera {
             this.divisionEuclidea();
         }
         obj.setMcd(obj.getDivisor());
+        //System.out.print(obj.getMcd());
     }
 
 
@@ -73,7 +78,6 @@ public class AritmeticaEntera {
             x_1 = xii;
             xii = xi - obj.getCociente() * xii;
             xi = x_1;
-
             y_1 = yii;
             yii = yi - obj.getCociente() * yii;
             yi = y_1;

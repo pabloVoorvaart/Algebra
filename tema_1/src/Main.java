@@ -9,6 +9,7 @@ public class Main {
         int a = reader.nextInt();
         System.out.print("\n");
 
+
         System.out.print("Intrduze b: ");
         int b = reader.nextInt();
         System.out.print("\n");
@@ -18,15 +19,16 @@ public class Main {
         int c = reader.nextInt();
         System.out.print("\n");
 
+/*
         AritmeticaEntera medium = new AritmeticaEntera(new ParNumeros(a, b));
         medium.algoritmoEuclidesExtendido();
-        //System.out.print(medium.obj.getMcd());
+        System.out.print(medium.obj.getMcd());
 
-        /*
-        Modulo m = new Modulo(a);
-        System.out.println(m.inversos);
-        System.out.println(m.clase(b));
+        medium.algoritmoEuclides();
         */
+
+        Modulo m = new Modulo(a);
+        m.ecuacionModular(b, c);
     }
 
 }
